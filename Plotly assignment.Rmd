@@ -1,0 +1,22 @@
+---
+title: "R Markdown & Plotly"
+author: "T Sathiyanarayanan"
+date: "`r Sys.Date()`"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library (plotly)
+```
+
+## Diameter, Height and Volume for Black Cherry Trees
+
+```{r plot, echo=FALSE, warning=FALSE}
+
+data("trees")
+colnames(trees)[1] <- "Diameter"
+g <- ggplot(data=trees, aes(x=Height, y=Volume, color=Diameter))+geom_point()+ geom_smooth(method='lm', formula= y~x)
+
+ggplotly(g)
+```
